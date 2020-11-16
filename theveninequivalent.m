@@ -13,7 +13,9 @@ xm = 26.3 ;  % magnetizing branch reactance
 v_phase = 460/sqrt(3) ;  % note that v_phase is 3vtriphase 
 n_sync = 1800 ; % synchronous speed rpm 
 w_sync = n_sync * 2*pi/60 ; % Conversion from rpm en rad/s 
-s = 1 ; % slip 
+s = (0:1:50)/50 ; % slip
+s(1) = 0.001 ; 
+nm = (1-s) * n_sync ; 
 
 % Calculate Thevenin voltage and impedance 
 v_th = v_phase * (xm / sqrt(r1^2 + (x1 + x2)^2)) ; 
@@ -22,5 +24,9 @@ r_th = real(z_th) ;
 x_th = imag(z_th) ; 
 
 
+for ii = 1:51 
+    t_ind(ii) = (3*(v_th^2)*r2/s(ii) / ( w_sync * ((r_th + (r2/s(ii)))^2 + (x_th + x2)^2))) ; 
+end
 
-t_ind = (3*(v_th^2)*r2/s / ( w_sync * ((r_th + (r2/s))^2 + (x_th + x2)^2))) ; 
+plot(nm,t_ind)
+
