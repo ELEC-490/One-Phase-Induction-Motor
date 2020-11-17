@@ -4,7 +4,7 @@ clc
 
 % Thevenin equivalent equation 
 
-% 1iust for test purposes : 
+% just for test purposes : 
 r1 = 0.641 ; % Stator resistance 
 x1 = 1.102 ; % Stator Reactance 
 r2 = 0.332 ; % Rotor resistance 
