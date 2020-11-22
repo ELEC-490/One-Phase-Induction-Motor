@@ -1,7 +1,6 @@
 
 clear 
 clc 
-
 % Thevenin equivalent equation 
 
 % just for test purposes : 
