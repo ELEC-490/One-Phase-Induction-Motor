@@ -6,17 +6,17 @@ clc
 
 
 % : 
-p = 4 ; % poles 
+p = 2 ; % poles 
 B = 0.00281 ; 
 J = 0.0155 ; 
-r1 =   1 ; % Stator resistance 
-x1 = 1.4633 ; % Stator Reactance 
-r2 = 1.06 ; % Rotor resistance 
-x2 = 3.41437 ; % rotor reactance 
-xm = 55.95636 ;  % magnetizing branch reactance
-v_phase = 220 ;  % note that v_phase is 3vtriphase 
+r1 =   0.6832 ; % Stator resistance 
+x1 = 1.0618 ; % Stator Reactance 
+r2 = 0.7265 ; % Rotor resistance 
+x2 = 1.5848 ; % rotor reactance 
+xm = 42.985 ;  % magnetizing branch reactance
+v_phase = 208/sqrt(3) ;  % Vline-line to Vphase 
 n_sync = 120*60/p ; % synchronous speed rpm 
-w_sync = n_sync * 2*pi/60 ; % Conversion from rpm en rad/s  
+w_sync = n_sync * 2*pi/60 ; % Conversion from rpm to rad/s  
 
 
 % Calculate Thevenin voltage and impedance 
