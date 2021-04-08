@@ -17,17 +17,22 @@ xm = 42.985 ;  % magnetizing branch reactance
 
 %%----- YOU CAN USE 208 V OR 230 V, BOTH ARE IN THE NAMEPLATE
 
-v_phase = 208/sqrt(3) ;  % Vline-line to Vphase 
+v_phase = 220/sqrt(3) ;  % Vline-line to Vphase 
 n_sync = 120*60/p ; % synchronous speed rpm 
 w_sync = n_sync * 2*pi/60 ; % Conversion from rpm to rad/s
 speed = 3450; % 3450 IS THE RATED
 slipFix = (3600-speed)/3600;
 
 % Calculate Thevenin voltage and impedance 
-v_th = v_phase * (xm / sqrt(r1^2 + (x1 + xm)^2)) ; 
-z_th = ((1i*xm)*(r1+1i*x1))/(r1 + 1i*(x1+xm)) ; 
+v_th = v_phase * (xm / sqrt(r1^2 + (x1 + xm)^2)) ; % Voltage Divider from left to Right to get
+                                                   % the Voltage at Xm node
+z_th = ((1i*xm)*(r1+1i*x1))/(r1 + 1i*(x1+xm)) ; % the Zeq between stator and Xm
 r_th = real(z_th) ; 
 x_th = imag(z_th) ; 
+z_total = z_th + r2 + (1i*x2); % the total equivalent Impedance between Zth and Rr + jXr
+gabo = 2 + 2i;
+phaseAngle = (180*angle(z_total)/pi);
+PF = cos(phaseAngle);
 
 % Define Slip 
 s = (0:1:50)/50 ; % slip
